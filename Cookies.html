@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cookies & Local Storage</title>
+</head>
+<body>
+    <style>
+                body {  font-size: 16px  }
+        
+                h2{ 
+                    margin-top: 0;
+                    text-align: center;
+                }
+        
+                #cookies-form{
+                    padding: 20px;
+                    margin: 10px;
+                    float: left;
+                    border: 1px solid #000;
+                }
+        
+                #cookies-form button{
+                    background: #bb0000;
+                    padding:10px 30px;
+                    color: white;
+                    width: 100%;
+                    font-size: 16px;
+                }
+
+                #cookies-form button:hover{
+                    background: #ee0000;
+                }
+        
+                #cookies-form input{
+                    width: 230px;
+                    height: 20px;
+                }
+        
+                .warning {
+                    background-color: rgb(255, 183, 157);
+                    font-size: 14px;
+                }
+        
+                .warning::placeholder{
+                    color:rgb(180, 27, 0);
+                }
+    </style>
+
+    <div id="cookies-form">
+        <h2>Cookies & <br> Local Storage</h2>
+        <form>
+            <label>Name:</label><br>
+            <input type="text" id="userNameCookie"><br>
+            <br>
+            <label>Age:</label><br>
+            <input type="text" id="userAgeCookie"><br>
+            <br>
+        </form>
+        <button id="setCookies" onclick="SetInfoToCoockies()">Write Info to cookies <br> and to local storage</button>
+    </div>
+
+    <script>
+        function setCookie(name, value) {
+        
+        value = encodeURIComponent(value);
+
+        var updatedCookie = name + "=" + value;
+
+        document.cookie = updatedCookie; //Write a coockie
+
+        localStorage.setItem(name, value); //Write local storage
+        }
+
+        function SetInfoToCoockies(){
+            
+            var userInfo = {
+                userName : document.getElementById("userNameCookie").value,
+                userAge : document.getElementById("userAgeCookie").value
+            };
+
+            for(key in userInfo){
+                setCookie(key, userInfo[key]);
+            };
+        }
+    
+    </script>
+</body>
+</html>
