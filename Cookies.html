@@ -69,9 +69,14 @@
 
         var updatedCookie = name + "=" + value;
 
-        document.cookie = updatedCookie; //Write a coockie
+        document.cookie = updatedCookie;
+        }
 
-        localStorage.setItem(name, value); //Write local storage
+        function setLocStor(name, value) {
+        
+        value = encodeURIComponent(value);
+
+        localStorage.setItem(name, value);
         }
 
         function SetInfoToCoockies(){
@@ -82,8 +87,10 @@
             };
 
             for(key in userInfo){
-                setCookie(key, userInfo[key]);
+                setLocStor(key, userInfo[key]);
             };
+
+            setCookie("user", JSON.stringify(userInfo));
         }
     
     </script>
